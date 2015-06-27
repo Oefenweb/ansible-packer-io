@@ -1,0 +1,15 @@
+---
+# defaults file for packer
+
+# Version to be installed
+packer_version: 0.8.0
+# SHA256 from file
+packer_sha256sum: 74b21580a7734fd6a025cfbba5ec60b85a61cd7c99ffe87904c4c013c801e6d2
+# Packer architecture
+packer_arch: amd64
+# Download cache
+packer_download_cache: /var/cache/packer.zip
+# Path where packer should be installed
+packer_path: /opt/packer
+# Info file containing the current version
+packer_info: "{{ packer_path }}/info.txt"

@@ -1,0 +1,20 @@
+---
+# tasks file for packer
+- name: Checking Packer version
+  command: grep -qs "{{ packer_version }}" "{{ packer_info }}"
+  register: installed
+  ignore_errors: True
+  changed_when: False
+
+# Uninstall/remove task
+- include: uninstall.yml
+  when: installed.rc > 0
+  tags:
+    - uninstall
+    - remove
+
+# Setup/install task
+- include: install.yml
+  when: installed.rc > 0
+  tags:
+    - install

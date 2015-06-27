@@ -1,0 +1,6 @@
+---
+# uninstall tasks file for packer
+- name: Removing old version
+  file:
+    name: "{{ packer_path }}"
+    state: absent

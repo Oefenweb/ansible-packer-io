@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Florian Pelgrim
+  description: Installs Hashicorps Packer
+  company: craneworks
+  
+  license: CC-BY
+  min_ansible_version: 1.8
+
+  platforms:
+  - name: Ubuntu
+    versions:
+      - all
+  - name: Debian
+    versions:
+      - all
+
+  categories:
+    - cloud
+    - development
+    - packaging
+    - system
+
+dependencies: []
+  

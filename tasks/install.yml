@@ -1,0 +1,29 @@
+- name: Installing unzip
+  apt:
+    name: unzip
+    state: present
+
+- name: Create path
+  file:
+    name: "{{ packer_path }}"
+    state: directory
+
+- name: Downloading
+  get_url:
+    url: "https://dl.bintray.com/mitchellh/packer/packer_{{ packer_version }}_linux_{{ packer_arch }}.zip"
+    dest: "{{ packer_download_cache }}"
+    sha256sum: "{{ packer_sha256sum }}"
+
+- name: Installing
+  unarchive:
+    src: "{{ packer_download_cache }}"
+    dest: "{{ packer_path }}"
+    mode: 0755
+    copy: no
+
+- name: Writing info file
+  lineinfile:
+    dest: "{{ packer_info }}"
+    line: "{{ packer_version }}"
+    state: present
+    create: yes
