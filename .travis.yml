@@ -23,7 +23,7 @@ script:
   - "ansible-playbook -i tests/inventory tests/$SITE --sudo"
 
   # Simulate an update
-  - sudo echo '0.7.0' > /opt/packer/info.txt
+  - sudo bash -c 'echo 0.7.0 > /opt/packer/info.txt'
   - ansible-playbook -i tests/inventory tests/$SITE --sudo
 
   # Run the role/playbook again, checking to make sure it's idempotent.
