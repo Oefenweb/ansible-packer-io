@@ -1,4 +1,4 @@
-Ansible role: packer
+Ansible role: packer [![Build Status](https://travis-ci.org/craneworks/ansible-packer.png)](https://travis-ci.org/craneworks/ansible-packer)
 =========
 
 An Ansible role that install Hashicorps Packer
