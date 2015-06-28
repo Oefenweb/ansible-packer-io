@@ -24,9 +24,8 @@ script:
   - "ansible-playbook -i tests/inventory tests/$SITE --sudo"
 
   # Simulate an update
-  - >
-    echo '0.7.0' > $INFO
-    && ansible-playbook -i tests/inventory tests/$SITE --sudo
+  - echo '0.7.0' > $INFO
+  - ansible-playbook -i tests/inventory tests/$SITE --sudo
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
