@@ -1,8 +1,3 @@
-- name: Installing unzip
-  apt:
-    name: unzip
-    state: present
-
 - name: Create path
   file:
     name: "{{ packer_path }}"
