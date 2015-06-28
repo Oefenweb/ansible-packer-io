@@ -4,7 +4,6 @@ python: "2.7"
 
 env:
   - SITE=tests.yml
-  - INFO=/opt/packer/info.txt
 
 before_install:
   - sudo apt-get update -qq
@@ -24,7 +23,7 @@ script:
   - "ansible-playbook -i tests/inventory tests/$SITE --sudo"
 
   # Simulate an update
-  - echo '0.7.0' > $INFO
+  - echo '0.7.0' > /opt/packer/info.txt
   - ansible-playbook -i tests/inventory tests/$SITE --sudo
 
   # Run the role/playbook again, checking to make sure it's idempotent.
