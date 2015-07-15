@@ -3,33 +3,67 @@ language: python
 python: "2.7"
 
 env:
-  - SITE=tests.yml
+  - ANSIBLE_VERSION=latest
+  - ANSIBLE_VERSION=1.9.2
+  - ANSIBLE_VERSION=1.9.1
+  - ANSIBLE_VERSION=1.9.0.1
+  - ANSIBLE_VERSION=1.8.4
+  - ANSIBLE_VERSION=1.8.3
+  - ANSIBLE_VERSION=1.8.2
+  - ANSIBLE_VERSION=1.8.1
+  - ANSIBLE_VERSION=1.8
+  - ANSIBLE_VERSION=1.7.2
+  - ANSIBLE_VERSION=1.7.1
+  - ANSIBLE_VERSION=1.7
+  - ANSIBLE_VERSION=1.6.9
+  - ANSIBLE_VERSION=1.6.8
+  - ANSIBLE_VERSION=1.6.7
+  - ANSIBLE_VERSION=1.6.6
+  - ANSIBLE_VERSION=1.6.5
+  - ANSIBLE_VERSION=1.6.4
+  - ANSIBLE_VERSION=1.6.3
+  - ANSIBLE_VERSION=1.6.2
+  - ANSIBLE_VERSION=1.6.10
+  - ANSIBLE_VERSION=1.6.1
+  - ANSIBLE_VERSION=1.6
+
+branches:
+  only:
+    - master
+
+matrix:
+  allow_failures:
+    # Idempotency test fails, see https://groups.google.com/forum/#!msg/ansible-project/jwYFl8zw8Qw/1yhSq86uFmYJ
+    - env: ANSIBLE_VERSION=1.8.2
+    - env: ANSIBLE_VERSION=1.8.1
+    - env: ANSIBLE_VERSION=1.8
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install unzip
 
 install:
   # Install Ansible.
-  - pip install ansible
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
 
   # Add ansible.cfg to pick up roles path.
-  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+  - printf "[defaults]\nroles_path = ../" > ansible.cfg
 
 script:
   # Check the role/playbook's syntax.
-  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
 
   # Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i tests/inventory tests/$SITE --sudo"
-
-  # Simulate an update
-  - sudo bash -c 'echo 0.7.0 > /opt/packer/info.txt'
-  - ansible-playbook -i tests/inventory tests/$SITE --sudo
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvvv
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
-    ansible-playbook -i tests/inventory tests/$SITE --sudo
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+
+notifications:
+  email: false
+  hipchat:
+    rooms:
+      secure: iaxiQX9eq5b8qyx0yUhWmzxbUjCHBz0hkunWUgiUQ+yxNANzpu0yPypMrm+LV9CYtkZiyTn9lUpQjuUgHb/gFlMntXJvIaqjYiY15IbF0KUNz/wHC4+dMseEvqMdtOh2cf0jpSfQP8fUgZKav/H528ATq0t6JBJOilUNBgzXNmgtIRFciRbFgzKCHjPFk2SMG0aQwfCXuh/YrSLxM7AJu68Wcv5qamP805hXwC0QrarN1f4ScsySJS5yqgVZQsz0kLETexuEAu1baVRCOVLZtvseBb2IfZHrKsa3wJtZUOZjKAtcHCL752ayRzQDMQYQ/58qNTnsJVp6QMXmpKPjBmxXQY7NMMsEMiF5jmlF1+8XBYOlhKohZMnVOLC5/9GUjh1AF6BzHVdLbo50m3eWPNQEerHq4+t/NOPBBVrqRQmXcyhYajs8jw7/tILmgTYa0X9vvAGqSjmW/ciC18QOUkzqyaoEHX9CniZXKwfyjqXPoni+MKHmF0al93JOECnQuinh4rDUBJ8eJyRwxU9dat40SBFBlxcBeZ4kuT4gbwt3p3xs260G3VHkxA2KQ7xLQT6A6qST3difVL9hcGx/oqTy5e989omAhcx0PApQiAcPdO0IMkDKAMTBEBofbw2oFqbzxk++R1HhoVrYnRMbB+5Zrdr/IblTLxAotrnVGzI=
