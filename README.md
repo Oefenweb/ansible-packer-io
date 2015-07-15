@@ -10,7 +10,8 @@ Set up [Packer](https://packer.io/) by HashiCorp in Debian-like systems.
 
 #### Variables
 
-None
+* `packer_io_version` [default: `0.8.1`]: Version to install
+* `packer_io_install_prefix` [default: `/opt`]: Install prefix
 
 ## Dependencies
 
@@ -31,7 +32,7 @@ MIT
 
 #### Author Information
 
-Mischa ter Smitten
+Mischa ter Smitten (based on work of [Florian Pelgrim](https://github.com/craneworks))
 
 #### Feedback, bug-reports, requests, ...
 
