@@ -1,5 +1,6 @@
+# test file for packer-io
 ---
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-packer
+    - ansible-packer-io

@@ -1,55 +1,38 @@
-Ansible role: packer [![Build Status](https://travis-ci.org/craneworks/ansible-packer.png)](https://travis-ci.org/craneworks/ansible-packer)
-=========
+## packer-io
 
-An Ansible role that install Hashicorps Packer
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-packer-io.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-packer-io) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-packer--io-blue.svg)](https://galaxy.ansible.com/list#/roles/4394)
 
-Requirements
-------------
+Set up [Packer](https://packer.io/) by HashiCorp in Debian-like systems.
 
-On the host must `unzip` being installed.
+#### Requirements
 
-Role Variables
---------------
+* `unzip` (will be installed)
 
-Available variables are listed below, along with default values (see `defaults/main.yml`):
-
-	packer_version: 0.8.0
-
-The version which should be installed.
-
-	packer_sha256sum: 74b21580a7734fd6a025cfbba5ec60b85a61cd7c99ffe87904c4c013c801e6d2
-
-The sha256sum of the downloaded zip file.
-
-	packer_arch: amd64
-
-Architecture which should be used.
-
-	packer_download_cache: /var/cache/packer.zip
-
-Destination where the zip file should be cached.
-
-	packer_path: /opt/packer
-
-Path where Packer should be installed
-
-	packer_info: /opt/packer/info.txt
-
-Info file where the version is being stored
-
-Dependencies
-------------
+#### Variables
 
 None
 
-Example Playbook
-----------------
+## Dependencies
 
-    - hosts: buildservers
-      roles:
-         - { role: craneworks.packer, packer_version: 0.8.0, packer_sha256sum: 74b21580a7734fd6a025cfbba5ec60b85a61cd7c99ffe87904c4c013c801e6d2 }
+None
 
-License
--------
+#### Example
 
-CC-BY - https://creativecommons.org/licenses/by/3.0/
+```yaml
+---
+- hosts: all
+  roles:
+    - packer-io
+```
+
+#### License
+
+MIT
+
+#### Author Information
+
+Mischa ter Smitten
+
+#### Feedback, bug-reports, requests, ...
+
+Are [welcome](https://github.com/Oefenweb/ansible-packer-io/issues)!

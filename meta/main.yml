@@ -1,25 +1,24 @@
+# meta file for pip
 ---
 galaxy_info:
-  author: Florian Pelgrim
-  description: Installs Hashicorps Packer
-  company: craneworks
-  
-  license: CC-BY
-  min_ansible_version: 1.8
-
+  author: Mischa ter Smitten
+  company: Oefenweb.nl B.V.
+  description: Set up Packer by HashiCorp in Debian-like systems
+  license: MIT
+  min_ansible_version: 1.4
   platforms:
-  - name: Ubuntu
-    versions:
-      - all
-  - name: Debian
-    versions:
-      - all
-
+    - name: Ubuntu
+      versions:
+        - lucid
+        - precise
+        - trusty
+    - name: Debian
+      versions:
+        - squeeze
+        - wheezy
+        - jessie
   categories:
-    - cloud
     - development
-    - packaging
     - system
-
+    - packaging
 dependencies: []
-  
