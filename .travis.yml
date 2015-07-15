@@ -31,6 +31,13 @@ branches:
   only:
     - master
 
+matrix:
+  allow_failures:
+    # Idempotency test fails, see https://groups.google.com/forum/#!msg/ansible-project/jwYFl8zw8Qw/1yhSq86uFmYJ
+    - env: ANSIBLE_VERSION=1.8.2
+    - env: ANSIBLE_VERSION=1.8.1
+    - env: ANSIBLE_VERSION=1.8
+
 before_install:
   - sudo apt-get update -qq
 
