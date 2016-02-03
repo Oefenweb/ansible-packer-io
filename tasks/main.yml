@@ -20,7 +20,7 @@
 
 - name: download
   get_url:
-    url: "https://dl.bintray.com/mitchellh/packer/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
+    url: "https://releases.hashicorp.com/packer/{{ packer_io_version }}/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
     dest: "{{ packer_io_downloads_path }}/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
     owner: root
     group: root
