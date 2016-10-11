@@ -6,8 +6,11 @@
     state: latest
     update_cache: true
     cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
-  with_items: packer_io_dependencies
-  tags: [configuration, packer-io, packer-io-dependencies]
+  with_items: "{{ packer_io_dependencies }}"
+  tags:
+    - configuration
+    - packer-io
+    - packer-io-dependencies
 
 - name: create (download) directory
   file:
@@ -16,7 +19,10 @@
     owner: root
     group: root
     mode: 0755
-  tags: [configuration, packer-io, packer-io-download]
+  tags:
+    - configuration
+    - packer-io
+    - packer-io-download
 
 - name: download
   get_url:
@@ -25,7 +31,10 @@
     owner: root
     group: root
     mode: 0644
-  tags: [configuration, packer-io, packer-io-download]
+  tags:
+    - configuration
+    - packer-io
+    - packer-io-download
 
 - name: create (install) directory
   file:
@@ -34,7 +43,10 @@
     owner: root
     group: root
     mode: 0755
-  tags: [configuration, packer-io, packer-io-install]
+  tags:
+    - configuration
+    - packer-io
+    - packer-io-install
 
 - name: install
   unarchive:
@@ -42,4 +54,7 @@
     dest: "{{ packer_io_install_path }}"
     creates: "{{ packer_io_install_path }}/packer"
     copy: false
-  tags: [configuration, packer-io, packer-io-install]
+  tags:
+    - configuration
+    - packer-io
+    - packer-io-install
