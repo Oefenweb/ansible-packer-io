@@ -20,28 +20,10 @@ env:
   - ANSIBLE_VERSION=2.0.0.1
   - ANSIBLE_VERSION=2.0.0.0
   - ANSIBLE_VERSION=1.9.6
-  - ANSIBLE_VERSION=1.9.5
-  - ANSIBLE_VERSION=1.9.4
-  - ANSIBLE_VERSION=1.9.3
-  - ANSIBLE_VERSION=1.9.2
-  - ANSIBLE_VERSION=1.9.1
-  - ANSIBLE_VERSION=1.9.0.1
-  - ANSIBLE_VERSION=1.8.4
-  - ANSIBLE_VERSION=1.8.3
-  - ANSIBLE_VERSION=1.8.2
-  - ANSIBLE_VERSION=1.8.1
-  - ANSIBLE_VERSION=1.8
 
 branches:
   only:
     - master
-
-matrix:
-  allow_failures:
-    # Idempotency test fails, see https://groups.google.com/forum/#!msg/ansible-project/jwYFl8zw8Qw/1yhSq86uFmYJ
-    - env: ANSIBLE_VERSION=1.8.2
-    - env: ANSIBLE_VERSION=1.8.1
-    - env: ANSIBLE_VERSION=1.8
 
 before_install:
   - sudo apt-get update -qq
