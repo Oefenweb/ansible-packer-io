@@ -1,4 +1,4 @@
 # defaults file for packer-io
 ---
-packer_io_version: 0.12.3
+packer_io_version: 1.0.0
 packer_io_install_prefix: /opt
