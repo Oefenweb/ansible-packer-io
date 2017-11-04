@@ -58,3 +58,15 @@
     - configuration
     - packer-io
     - packer-io-install
+
+- name: verify
+  command: >
+    {{ packer_io_install_path }}/packer --version
+  register: _verify_version
+  failed_when: "packer_io_version not in _verify_version.stdout"
+  changed_when: false
+  tags:
+    - configuration
+    - packer-io
+    - packer-io-install
+    - packer-io-install-verify
