@@ -10,7 +10,7 @@ Set up [Packer](https://packer.io/) by HashiCorp in Debian-like systems.
 
 #### Variables
 
-* `packer_io_version` [default: `1.1.0`]: Version to install
+* `packer_io_version` [default: `1.1.1`]: Version to install
 * `packer_io_install_prefix` [default: `/opt`]: Install prefix
 
 ## Dependencies
