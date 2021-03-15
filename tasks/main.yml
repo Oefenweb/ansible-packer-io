@@ -1,4 +1,4 @@
-# tasks file for packer-io
+# tasks file
 ---
 - name: install dependencies
   apt:

@@ -1,6 +1,7 @@
-# meta file for packer-io
+# meta file
 ---
 galaxy_info:
+  namespace: oefenweb
   role_name: packer-io
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.

@@ -1,4 +1,4 @@
-# vars file for packer-io
+# vars file
 ---
 packer_io_dependencies:
   - unzip
