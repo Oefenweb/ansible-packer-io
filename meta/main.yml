@@ -2,7 +2,7 @@
 ---
 galaxy_info:
   namespace: oefenweb
-  role_name: packer-io
+  role_name: packer_io
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
   description: Set up Packer by HashiCorp in Debian-like systems
