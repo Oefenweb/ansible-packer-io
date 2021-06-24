@@ -1,6 +1,6 @@
 ## packer-io
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-packer-io.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-packer-io)
+[![CI](https://github.com/Oefenweb/ansible-packer-io/workflows/CI/badge.svg)](https://github.com/Oefenweb/ansible-packer-io/actions?query=workflow%3ACI)
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-packer--io-blue.svg)](https://galaxy.ansible.com/Oefenweb/packer_io)
 
 Set up [Packer](https://packer.io/) by HashiCorp in Debian-like systems.
