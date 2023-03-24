@@ -1,7 +1,7 @@
 # tasks file
 ---
 - name: install dependencies
-  apt:
+  ansible.builtin.apt:
     name: "{{ packer_io_dependencies }}"
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
@@ -12,7 +12,7 @@
     - packer-io-dependencies
 
 - name: create (download) directory
-  file:
+  ansible.builtin.file:
     path: "{{ packer_io_downloads_path }}"
     state: directory
     owner: root
@@ -24,7 +24,7 @@
     - packer-io-download
 
 - name: download
-  get_url:
+  ansible.builtin.get_url:
     url: "https://releases.hashicorp.com/packer/{{ packer_io_version }}/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
     dest: "{{ packer_io_downloads_path }}/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
     owner: root
@@ -36,7 +36,7 @@
     - packer-io-download
 
 - name: create (install) directory
-  file:
+  ansible.builtin.file:
     path: "{{ packer_io_install_path }}"
     state: directory
     owner: root
@@ -48,7 +48,7 @@
     - packer-io-install
 
 - name: install
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ packer_io_downloads_path }}/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
     dest: "{{ packer_io_install_path }}"
     creates: "{{ packer_io_install_path }}/packer"
@@ -59,7 +59,7 @@
     - packer-io-install
 
 - name: verify
-  command: >
+  ansible.builtin.command: >
     {{ packer_io_install_path }}/packer --version
   register: _verify_version
   failed_when: "packer_io_version not in _verify_version.stdout"
