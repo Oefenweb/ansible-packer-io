@@ -24,7 +24,7 @@ None
 ---
 - hosts: all
   roles:
-    - packer-io
+    - oefenweb.packer-io
 ```
 
 #### License
