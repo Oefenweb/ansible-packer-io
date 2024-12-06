@@ -17,7 +17,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   tags:
     - configuration
     - packer-io
@@ -29,7 +29,7 @@
     dest: "{{ packer_io_downloads_path }}/packer_{{ packer_io_version }}_linux_{{ packer_io_machine_map[ansible_machine] }}.zip"
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   tags:
     - configuration
     - packer-io
@@ -41,7 +41,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   tags:
     - configuration
     - packer-io
